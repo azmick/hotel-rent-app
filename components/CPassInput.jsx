@@ -2,13 +2,13 @@ import React from 'react'
 import { View, TextInput} from 'react-native'
 
 
-export const CTextInput = ({ style, functions, textcolor = "white", title = "Button", backgroundcolor = "blue"}) => {
+export const CPassInput = ({ style, functions, textcolor = "black", backgroundcolor = "white",password}) => {
   return (
     <View>
       <TextInput
-        style={styles.input}
-        placeholder="Şifre"
-        onChangeText={(text) => setPassword(text)}
+        style={[style,{color:textcolor,backgroundColor:backgroundcolor}]}
+        placeholder='Şifre'
+        // onChangeText={(text) => setPassword(text)}
         value={password}
         secureTextEntry
       />

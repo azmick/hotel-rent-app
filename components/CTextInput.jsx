@@ -7,7 +7,7 @@ export const CTextInput = ({ style, functions,value,placeholder,textcolor="black
     <View>
       <TextInput
         style={[style,{backgroundColor:backgroundcolor,color:textcolor}]} 
-        placeholder=""
+        placeholder={placeholder}
         value={value}
       />
     </View>

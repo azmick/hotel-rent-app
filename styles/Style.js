@@ -22,14 +22,23 @@ export const styles = StyleSheet.create({
         color: 'white'
     },
     input: {
-        height: 40,
-        width: 200,
+        width: Dimensions.get('window').width / 1.7,
         borderColor: 'white',
         borderWidth: 1,
-        marginBottom: 16,
+        marginBottom: 5,
         paddingLeft: 8,
         backgroundColor: 'white',
         borderRadius: 5
+    },
+    passInput: {
+        flexDirection: 'row',
+        width: Dimensions.get('window').width / 2,
+        borderColor: 'white',
+        borderWidth: 1,
+        marginBottom: 5,
+        paddingLeft: 8,
+        backgroundColor: 'white',
+        borderRadius: 5,
     },
     button: {
         padding: 10,
@@ -48,16 +57,6 @@ export const styles = StyleSheet.create({
     passView: {
         flexDirection: 'row',
         margin: 8,
-    },
-    passInput: {
-        flexDirection: 'row',
-        width: Dimensions.get('window').width / 2,
-        borderColor: 'white',
-        borderWidth: 1,
-        marginBottom: 5,
-        paddingLeft: 8,
-        backgroundColor: 'white',
-        borderRadius: 5,
     },
     eyesView:{
         backgroundColor: 'white',
