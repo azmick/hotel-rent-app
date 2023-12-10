@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     innerContainer: {
-        backgroundColor: 'skyblue',
+        backgroundColor: 'rgb(103, 80, 164)',
         padding: 50,
         borderRadius: 10,
         // width: Dimensions.get('window').width / 2,
@@ -65,4 +65,10 @@ export const styles = StyleSheet.create({
         marginLeft: 3,
         marginBottom: 5
     },
+    card: {
+        margin: 4,
+      },
+      cardButton: {
+        backgroundColor:'white',
+      },
 });
