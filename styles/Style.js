@@ -16,6 +16,11 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    cardContainer: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+    },
     title: {
         fontSize: 24,
         marginBottom: 16,
@@ -67,8 +72,33 @@ export const styles = StyleSheet.create({
     },
     card: {
         margin: 4,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').height * 0.45,
+        textAlign: 'center',
+        fontSize: 12,
+        padding: 10,
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        
+      },
+      shareButton: {
+        backgroundColor:'white',
+        width: Dimensions.get('window').width * 0.2,
+        height: Dimensions.get('window').height * 0.05,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius:20,
+        borderColor: 'rgb(103, 80, 164)',
+        borderStyle: 'solid',
+        borderWidth: 0.5,
       },
       cardButton: {
-        backgroundColor:'white',
-      },
+        width: Dimensions.get('window').width * 0.5,
+        height: Dimensions.get('window').height * 0.075,
+        flexDirection: 'row', 
+        marginRight: 11
+        
+    }
 });

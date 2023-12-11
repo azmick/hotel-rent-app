@@ -11,15 +11,34 @@ import { FIREBASE_AUTH } from './FirebaseConfig';
 
 const Stack = createStackNavigator();
 
+// App.jsr
+
 const App = () => {
   const [user, setUser] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+    const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, async (user) => {
       console.log("user", user);
       setUser(user);
+
+      // Check if the user is logged in and determine if they are an admin
+      if (user) {
+        // Assuming you have a way to determine if the user is an admin (e.g., user roles)
+        const isAdmin = await checkIfUserIsAdmin(user.uid);
+
+        if (isAdmin) {
+          // Navigate to the admin panel
+          navigation.replace("AdminPanel"); // Update with your admin panel route
+        } else {
+          // Navigate to the home page
+          setIsLogin(true);
+        }
+      }
     });
+
+    // Clean up the subscription on component unmount
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -28,13 +47,13 @@ const App = () => {
         <Stack.Navigator initialRouteName="Login">
           {user && isLogin ? (
             <Stack.Screen
-              name="Giris Yap"
+              name="Home"
               component={HomePage}
               options={{ headerShown: false }}
             />
           ) : (
             <Stack.Screen
-              name={user ? "Tekrar Giriş Yap" : "Giriş Yap"}
+              name={user ? "Admin Panel" : "Login"}
               component={() => <LoginPage setIsLogin={setIsLogin} />}
               options={{ headerShown: true }}
             />

@@ -10,6 +10,9 @@ import {
   Text,
 } from 'react-native-paper';
 import { styles } from '../styles/Style'
+import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { CButton } from './CButton';
 
 const Cards = () => {
   const { colors, isV3 } = useTheme();
@@ -18,26 +21,23 @@ const Cards = () => {
 
 
   return (
-    <>
+    <View style={styles.cardContainer}>
       <Card style={styles.card} >
         <Card.Cover
           source={require('../assets/deneme.jpg')}
         />
         <Card.Title title="Abandoned Ship" />
         <Card.Content>
+        <Card.Actions style={styles.cardButton} >
+          <CButton title='Share' style={styles.shareButton} backgroundcolor='white' textcolor='rgb(103, 80, 164)' functions={()=>{}} />
+          <CButton title='Explore' style={styles.shareButton} backgroundcolor='rgb(103, 80, 164)' textcolor='white' functions={()=>{}} />
+        </Card.Actions>
           <TextComponent variant="bodyMedium">
-            The Abandoned Ship is a wrecked ship located on Route 108 in
-            Hoenn, originally being a ship named the S.S. Cactus. The second
-            part of the ship can only be accessed by using Dive and contains
-            the Scanner.
           </TextComponent>
         </Card.Content>
-        <Card.Actions>
-          <Button style={styles.cardButton} onPress={() => { }}>Share</Button>
-          <Button onPress={() => { }}>Explore</Button>
-        </Card.Actions>
+
       </Card>
-    </>
+    </View>
   )
 }
 
