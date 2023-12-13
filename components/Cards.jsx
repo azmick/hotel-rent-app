@@ -14,7 +14,7 @@ import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { CButton } from './CButton';
 
-const Cards = () => {
+const Cards = (title,description) => {
   const { colors, isV3 } = useTheme();
   const TextComponent = isV3 ? Text : Paragraph;
   const modes = 'contained'
@@ -26,7 +26,7 @@ const Cards = () => {
         <Card.Cover
           source={require('../assets/deneme.jpg')}
         />
-        <Card.Title title="Abandoned Ship" />
+        <Card.Title title={title} />
         <Card.Content>
         <Card.Actions style={styles.cardButton} >
           <CButton title='Share' style={styles.shareButton} backgroundcolor='white' textcolor='rgb(103, 80, 164)' functions={()=>{}} />
