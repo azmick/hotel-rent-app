@@ -44,8 +44,8 @@ function AdminPanelPage() {
     fetchData();
   }, []);
 
-  const addRoom = async (title,description) => {
-    const doc = addDoc(collection(FIRESTORE_DB, 'room'), { title: title, description: description})
+  const addRoom = async ({title,description}) => {
+    const doc = addDoc(collection(FIRESTORE_DB, 'room'), { title: titleInput, description: descInput})
     console.log("doc:", doc)
   }
 

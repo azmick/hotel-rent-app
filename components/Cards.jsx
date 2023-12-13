@@ -14,7 +14,7 @@ import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { CButton } from './CButton';
 
-const Cards = (title,description) => {
+const Cards = ({title,description}) => {
   const { colors, isV3 } = useTheme();
   const TextComponent = isV3 ? Text : Paragraph;
   const modes = 'contained'
