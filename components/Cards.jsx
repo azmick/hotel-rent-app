@@ -19,7 +19,7 @@ import { FIRESTORE_DB } from '../FirebaseConfig';
 import { any } from 'prop-types';
 
 
-const Cards = ({ title, description, id, isAdmin }) => {
+const Cards = ({ title, description, id, isAdmin,currentUserEmail }) => {
   const { colors, isV3 } = useTheme();
   const TextComponent = isV3 ? Text : Paragraph;
   const modes = 'contained';
@@ -53,8 +53,28 @@ const Cards = ({ title, description, id, isAdmin }) => {
     }
   };
 
+  const rentRoom = async (roomId) => {
+    try {
+      await updateDoc(doc(FIRESTORE_DB, 'room', roomId), {
+        isRented: true,
+        email: currentUserEmail,
+      });
+  
+      console.log('Room rented successfully');
+    }  catch (error) {
+    console.error('Error renting room:', error);
+  }
+}
+  
+
   const handleDelete = () => {
     deleteRoom(id);
+  };
+
+  const handleRent = () => {
+    // Burada, kullanıcının e-posta adresini almanız gerekecek.
+    // Örneğin, kullanıcının oturum açmış olduğu bir sistemde bu bilgiye ulaşabilirsiniz.  
+    rentRoom(id);
   };
 
   return (
@@ -78,10 +98,11 @@ const Cards = ({ title, description, id, isAdmin }) => {
             <TextInput
               value={editedDescription}
               onChangeText={(text) => setEditedDescription(text)}
+              maxLength={100}
             />
           ) : (
             // Düzenleme modunda değilse normal Description'ı göster
-            <TextComponent variant='bodySmall'>{description}</TextComponent>
+            <TextComponent variant='bodySmall' style={{height:50,marginBottom:30}}>{description}</TextComponent>
           )}
 
           <Card.Actions style={styles.cardButton}>
@@ -122,18 +143,11 @@ const Cards = ({ title, description, id, isAdmin }) => {
             {isAdmin ? null : ( // Admin değilse göster
               <>
                 <CButton
-                  title="Share"
-                  style={styles.shareButton}
-                  backgroundcolor="white"
-                  textcolor="rgb(103, 80, 164)"
-                  functions={() => {}}
-                />
-                <CButton
-                  title="Explore"
+                  title="Kirala"
                   style={styles.shareButton}
                   backgroundcolor="rgb(103, 80, 164)"
                   textcolor="white"
-                  functions={() => {}}
+                  functions={handleRent}
                 />
               </>
             )}

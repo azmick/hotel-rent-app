@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
     card: {
         margin: 4,
         width: Dimensions.get('window').width * 0.8,
-        height: Dimensions.get('window').height * 0.53,
+        height: Dimensions.get('window').height * 0.5,
         textAlign: 'center',
         fontSize: 12,
         padding: 10,

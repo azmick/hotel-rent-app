@@ -9,7 +9,7 @@ import { updateEmail, updatePassword } from 'firebase/auth'; // updateEmail ve u
 import Cards from '../components/Cards';
 import { FIRESTORE_DB, FIREBASE_AUTH } from '../FirebaseConfig';
 
-const HomePage = () => {
+const HomePage = (currentUserEmail) => {
   const navigation = useNavigation();
   const [rooms, setRooms] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
@@ -29,7 +29,7 @@ const HomePage = () => {
   const closeProfileUpdateModal = () => {
     setShowProfileUpdateModal(false);
   };
-
+  
   const handleUpdate = async () => {
     try {
       // Firebase üzerinde kullanıcının email ve password'ünü güncellemek için uygun fonksiyonları kullanın
@@ -83,8 +83,9 @@ const HomePage = () => {
         </View>
       ) : null}
       <ScrollView contentContainerStyle={{ alignItems: 'center', justifyContent: 'space-between' }}>
+        <Text>{console.log(auth.currentUser.email)}</Text>
         {rooms.map((room) => (
-          <Cards key={room.id} title={room.title} description={room.description} id={room.id} isAdmin={false} />
+          <Cards key={room.id} title={room.title} description={room.description} id={room.id} isAdmin={false} currentUserEmail={auth.currentUser.email}/>
         ))}
       </ScrollView>
       <Modal transparent={true} visible={showProfileUpdateModal} animationType="slide">

@@ -66,7 +66,7 @@ const Login = () => {
         setEmail(null)
         setPassword(null)
       } else {
-        navigation.navigate('Home');
+        navigation.navigate('Home', { email });
         setEmail(null)
         setPassword(null)
       }

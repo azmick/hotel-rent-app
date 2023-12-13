@@ -13,6 +13,7 @@ function AdminPanelPage() {
   const [titleInput, setTitleInput] = useState('');
   const [descInput, setDescInput] = useState('');
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,6 +48,8 @@ function AdminPanelPage() {
       await addDoc(collection(FIRESTORE_DB, 'room'), {
         title: titleInput,
         description: descInput,
+        isRented: false,
+        email: '',
       });
       setTitleInput('');
       setDescInput('');
@@ -70,6 +73,7 @@ function AdminPanelPage() {
             placeholder='Açıklama'
             onChangeText={(text) => setDescInput(text)}
             style={{ backgroundColor: 'white' }}
+            maxLength={100}
             value={descInput}
           />
           <Button onPress={addRoom} style={{ backgroundColor: 'green', margin: 10 }} textColor='white'>
