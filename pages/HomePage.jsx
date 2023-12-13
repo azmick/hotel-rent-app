@@ -4,10 +4,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Menu } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { collection, getDocs, onSnapshot } from 'firebase/firestore';
-import Cards from '../components/Cards';
-import { FIRESTORE_DB } from '../FirebaseConfig';
 import { useNavigation } from '@react-navigation/native';
-import { updateProfile } from 'firebase/auth';
+import { updateEmail, updatePassword } from 'firebase/auth'; // updateEmail ve updatePassword fonksiyonlarını kullanın
+import Cards from '../components/Cards';
+import { FIRESTORE_DB, FIREBASE_AUTH } from '../FirebaseConfig';
 
 const HomePage = () => {
   const navigation = useNavigation();
@@ -16,6 +16,7 @@ const HomePage = () => {
   const [showProfileUpdateModal, setShowProfileUpdateModal] = useState(false);
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const auth = FIREBASE_AUTH;
 
   const openMenu = () => {
     setShowMenu(!showMenu);
@@ -31,8 +32,16 @@ const HomePage = () => {
 
   const handleUpdate = async () => {
     try {
-      // Firebase üzerinde kullanıcının email ve password'ünü güncellemek için uygun bir fonksiyon kullanın
-      await updateProfile(newEmail, newPassword);
+      // Firebase üzerinde kullanıcının email ve password'ünü güncellemek için uygun fonksiyonları kullanın
+      const user = auth.currentUser;
+      if (user) {
+        if (newEmail) {
+          await updateEmail(user, newEmail);
+        }
+        if (newPassword) {
+          await updatePassword(user, newPassword);
+        }
+      }
       // Profil güncellendikten sonra modal'ı kapatın
       closeProfileUpdateModal();
     } catch (error) {
@@ -92,7 +101,9 @@ const HomePage = () => {
               onChangeText={(text) => setNewPassword(text)}
               secureTextEntry
             />
-            <Button title="Güncelle" onPress={handleUpdate} />
+            <Button style={{marginBottom:15}} title="Güncelle" onPress={handleUpdate} />
+            <View style={{width:10}}/>
+            <Button title="İptal Et" onPress={closeProfileUpdateModal} />
           </View>
         </View>
       </Modal>

@@ -99,14 +99,14 @@ const Cards = ({ title, description, id, isAdmin }) => {
                 // Düzenleme modunda değilse "Edit" butonunu göster
                 <>
                 <CButton
-                  title="Edit"
+                  title="Güncelle"
                   style={styles.shareButton}
                   backgroundcolor="skyblue"
                   textcolor="white"
                   functions={() => startEditing(id)}
                 />
                 <CButton
-                title="Delete"
+                title="Sil"
                 style={styles.shareButton}
                 backgroundcolor="red"
                 textcolor="white"
