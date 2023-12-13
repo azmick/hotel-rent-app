@@ -84,51 +84,58 @@ const Cards = ({ title, description, id, isAdmin }) => {
           )}
 
           <Card.Actions style={styles.cardButton}>
-            <CButton
-              title="Share"
-              style={styles.shareButton}
-              backgroundcolor="white"
-              textcolor="rgb(103, 80, 164)"
-              functions={() => { }}
-            />
-            <CButton
-              title="Explore"
-              style={styles.shareButton}
-              backgroundcolor="rgb(103, 80, 164)"
-              textcolor="white"
-              functions={() => { }}
-            />
+            {isAdmin ? (
+              editingCard === id ? (
+                // Düzenleme modunda ise "Save" butonunu göster
+                <CButton
+                  title="Save"
+                  style={styles.shareButton}
+                  backgroundcolor="green"
+                  textcolor="white"
+                  functions={() => updateRoom(id)}
+                />
+              ) : (
+                // Düzenleme modunda değilse "Edit" butonunu göster
+                <>
+                <CButton
+                  title="Edit"
+                  style={styles.shareButton}
+                  backgroundcolor="skyblue"
+                  textcolor="white"
+                  functions={() => startEditing(id)}
+                />
+                <CButton
+                title="Delete"
+                style={styles.shareButton}
+                backgroundcolor="red"
+                textcolor="white"
+                functions={handleDelete}
+              />
+              </>
+              )
+            ) : (
+              // Admin değilse "Delete" butonunu göster
+              null
+            )}
 
-{isAdmin ? (
-  editingCard === id ? (
-    // Düzenleme modunda ise "Save" butonunu göster
-    <CButton
-      title="Save"
-      style={styles.shareButton}
-      backgroundcolor="green"
-      textcolor="white"
-      functions={() => updateRoom(id)}
-    />
-  ) : (
-    // Düzenleme modunda değilse "Edit" butonunu göster
-    <CButton
-      title="Edit"
-      style={styles.shareButton}
-      backgroundcolor="skyblue"
-      textcolor="white"
-      functions={() => startEditing(id)}
-    />
-  )
-) : (
-  <CButton
-    title="Delete"
-    style={styles.shareButton}
-    backgroundcolor="red"
-    textcolor="white"
-    functions={handleDelete}
-  />
-)}
-
+            {isAdmin ? null : ( // Admin değilse göster
+              <>
+                <CButton
+                  title="Share"
+                  style={styles.shareButton}
+                  backgroundcolor="white"
+                  textcolor="rgb(103, 80, 164)"
+                  functions={() => {}}
+                />
+                <CButton
+                  title="Explore"
+                  style={styles.shareButton}
+                  backgroundcolor="rgb(103, 80, 164)"
+                  textcolor="white"
+                  functions={() => {}}
+                />
+              </>
+            )}
           </Card.Actions>
         </Card.Content>
       </Card>
@@ -137,4 +144,3 @@ const Cards = ({ title, description, id, isAdmin }) => {
 };
 
 export default Cards;
-
