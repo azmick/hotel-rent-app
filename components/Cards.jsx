@@ -18,6 +18,7 @@ import { deleteDoc, doc, updateDoc } from 'firebase/firestore'; // updateDoc ekl
 import { FIRESTORE_DB } from '../FirebaseConfig';
 import { any } from 'prop-types';
 
+
 const Cards = ({ title, description, id, isAdmin }) => {
   const { colors, isV3 } = useTheme();
   const TextComponent = isV3 ? Text : Paragraph;

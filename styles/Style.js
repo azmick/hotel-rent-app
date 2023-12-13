@@ -52,7 +52,6 @@ export const styles = StyleSheet.create({
         padding: 20,
         marginBottom:20,
         borderRadius: 25,
-        marginTop: 35
     },
     button: {
         padding: 10,
@@ -82,7 +81,7 @@ export const styles = StyleSheet.create({
     card: {
         margin: 4,
         width: Dimensions.get('window').width * 0.8,
-        height: Dimensions.get('window').height * 0.60,
+        height: Dimensions.get('window').height * 0.53,
         textAlign: 'center',
         fontSize: 12,
         padding: 10,
