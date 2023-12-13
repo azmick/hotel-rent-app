@@ -56,7 +56,7 @@ function AdminPanelPage() {
       <TextInput onChangeText={setDescInput}></TextInput>
       <Button onPress={() => { addRoom(titleInput,descInput); }}>Add Room</Button>
       {rooms.map((room) => (
-        <Cards key={room.id} title={room.title} description={room.description}/>
+        <Cards key={room.id} title={room.title} description={room.description} id={room.id}/>
       ))}
     </ScrollView>
 
