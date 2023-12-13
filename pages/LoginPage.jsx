@@ -63,8 +63,12 @@ const Login = () => {
       const userRef = doc(store, 'users', response.user.uid); // userRef'i burada tanımla
       if ((await getDoc(userRef)).data().roles === 'admin') {
         navigation.navigate('AdminPanel');
+        setEmail(null)
+        setPassword(null)
       } else {
         navigation.navigate('Home');
+        setEmail(null)
+        setPassword(null)
       }
     } catch (err) {
       console.error('Giriş için hata:', err.message);
