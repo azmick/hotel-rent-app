@@ -61,7 +61,7 @@ const App = () => {
           )} */}
           <Stack.Screen name='Login' component={LoginPage} options={{headerShown: true}}/>
           <Stack.Screen name='Home' component={HomePage}/>
-          <Stack.Screen name='AdminPanel' component={AdminPanelPage} options={{headerShown: true}}/>
+          <Stack.Screen name='AdminPanel' component={AdminPanelPage} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </>

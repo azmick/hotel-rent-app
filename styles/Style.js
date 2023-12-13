@@ -45,6 +45,15 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 5,
     },
+    textInputContainer: {
+        backgroundColor: 'white',
+        width: Dimensions.get('window').width * 0.8,
+        height: Dimensions.get('window').height * 0.30,
+        padding: 20,
+        marginBottom:20,
+        borderRadius: 25,
+        marginTop: 35
+    },
     button: {
         padding: 10,
         borderRadius: 5,
@@ -72,8 +81,8 @@ export const styles = StyleSheet.create({
     },
     card: {
         margin: 4,
-        width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').height * 0.45,
+        width: Dimensions.get('window').width * 0.8,
+        height: Dimensions.get('window').height * 0.60,
         textAlign: 'center',
         fontSize: 12,
         padding: 10,
@@ -98,7 +107,7 @@ export const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.5,
         height: Dimensions.get('window').height * 0.075,
         flexDirection: 'row', 
-        marginRight: 11
+        marginLeft: Dimensions.get('window').width * 0.18,
         
     }
 });

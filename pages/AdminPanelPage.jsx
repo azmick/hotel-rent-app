@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Cards from '../components/Cards';
-import { Text, TextInput } from 'react-native-paper';
+import { Text, TextInput} from 'react-native-paper'; 
+import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { FIRESTORE_DB } from '../FirebaseConfig';
 import { Button } from 'react-native-paper';
 import { collection, addDoc, getDocs, onSnapshot } from 'firebase/firestore'; // Add this line
+import { styles } from '../styles/Style'
 
 function AdminPanelPage() {
   const [rooms, setRooms] = useState([])
@@ -51,13 +53,16 @@ function AdminPanelPage() {
 
   return (
     <ScrollView contentContainerStyle={{ alignItems: 'center', justifyContent: 'space-between' }}>
-      <Text>HomePage</Text>
-      <TextInput onChangeText={setTitleInput}></TextInput>
-      <TextInput onChangeText={setDescInput}></TextInput>
-      <Button onPress={() => { addRoom(titleInput,descInput); }}>Add Room</Button>
+      <View style={styles.textInputContainer}>
+      <Text>Admin Panel</Text>
+      <TextInput placeholder='Daire Tipi' onChangeText={setTitleInput} style={{backgroundColor:'white'}}></TextInput>
+      <TextInput placeholder= 'Açıklama' onChangeText={setDescInput} style={{backgroundColor:'white'}}></TextInput>
+      <Button onPress={() => { addRoom(titleInput,descInput); }} style={{backgroundColor:'green', margin:10}} textColor='white'>Daire Ekle</Button>
+      </View>
       {rooms.map((room) => (
-        <Cards key={room.id} title={room.title} description={room.description} id={room.id}/>
+        <Cards key={room.id} title={room.title} description={room.description} id={room.id} isAdmin={true}/>
       ))}
+
     </ScrollView>
 
   )
