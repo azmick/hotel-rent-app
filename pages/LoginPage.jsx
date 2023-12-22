@@ -38,18 +38,6 @@ const Login = () => {
   
     fetchUserData();
   }, []);
-  
-
-
-
-  const handleLogin = () => {
-
-  };
-
-  const handleRegister = () => {
-    // Üye Ol butonuna basıldığında kayıt sayfasına yönlendirme yap
-    navigation.navigate('Üye Ol');
-  };
 
 
   const signIn = async () => {
@@ -83,7 +71,7 @@ const Login = () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
       console.log(response);
-      alert("Check your emails!");
+      alert("Üye olundu!");
       // Kullanıcının email bilgilerini Firestore'a kaydet
       const userRef = doc(store, 'users', response.user.uid);
       await setDoc(userRef, {
